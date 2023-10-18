@@ -1,0 +1,432 @@
+:root{
+    --tealblue:#089da1;
+    --deepteal:#047a85;
+    --black:#444;
+    --light-color:#666;
+    --yellow:#ffc839;
+    --border:0.1rem solid rgba(0,0,0,0.1);
+    --border-hover:0.1rem solid var(--black);
+    --box-shadow:0 0.5rem 1rem rgba(0,0,0,0.1);
+}
+
+*{
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    transition: all .2s linear;
+    transition: width none;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 5rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+    width: 1rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+    background: var(--black);
+}
+
+.header .header-1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 9%;
+    background: #fff;
+}
+
+.header .header-1 .logo{
+    display: flex;
+    align-items: center;
+}
+
+.header .header-1 a img{
+    width: 4rem;
+    cursor: pointer;
+}
+
+.header .header-1 a .logo-text{
+    margin-top: 1rem;
+    font-size: 2.5rem;
+    color: var(--tealblue);
+}
+
+.header .header-1 .form-box{
+    width: 50rem;
+    height: 5rem;
+    border: 0.1rem solid var(--tealblue);
+    background-color: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.header .header-1 .form-box input{
+
+    font-size: 1.6rem;
+    padding: 0 1.2rem;
+    height: 100%;
+    width: 100%;
+    text-transform: none;
+    color: var(--black);
+    padding-right: 3.5rem;
+}
+
+.header .header-1 .form-box label{
+    font-size: 2.5rem;
+    padding-left: 1.5rem;
+    color: var(--black);
+    cursor: pointer;
+    position: absolute;
+    right: 0.8rem;
+}
+
+.header .header-1 .form-box label:hover{
+    color: var(--tealblue);
+}
+
+.header .header-1 .button {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.header .header-1 .button a i{
+    font-size: 3rem;
+    margin-right: 1.5rem;
+    color: var(--tealblue);
+    cursor: pointer;
+}
+
+.header .header-1 .button .btn-login{
+    
+    border: var(--border);
+    background-color: var(--tealblue);
+    padding: 1rem 2.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: white;
+    border-radius: 2.5rem;
+    cursor: pointer;
+}
+.header .header-1 .button .btn-register{
+    width: 12rem;
+    border: var(--border);
+    background-color: var(--tealblue);
+    padding: 1rem 2.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: white;
+    border-radius: 2.5rem;
+    margin-right: 1.5rem;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.header .header-1 .button .btn-logout{
+    
+    border: var(--border);
+    background-color: var(--tealblue);
+    padding: 1rem 2.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: white;
+    border-radius: 2.5rem;
+    cursor: pointer;
+}
+
+.header .header-1 .button button:hover{
+    background: var(--yellow);
+    color:var(--tealblue);
+    transform: scale(1.2);
+}
+
+.header .header-2{
+    background-color: var(--tealblue);
+}
+
+.header .header-2 .navbar{
+    text-align: center;
+}
+
+.header .header-2 .navbar a{
+    color: #fff;
+    display: inline-block;
+    padding: 1.2rem;
+    font-size: 1.7rem;
+}
+
+.header .header-2 .navbar a:hover{
+    background: var(--deepteal);
+    color: var(--yellow);
+}
+
+.header .header-2.active{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+
+
+.detail {
+    max-width: 90%; /* Giới hạn chiều rộng của nội dung */
+    margin: 0 auto; /* Canh giữa nội dung */
+    padding: 20px; /* Khoảng cách ngoại vi cho nội dung */
+}
+
+.detail h2 {
+    text-align: center; /* Căn giữa tiêu đề */
+    font-size: 28px;
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+}
+
+.detail_card {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Chia layout thành 2 cột: 1/3 cho ảnh và 2/3 cho nội dung */
+    gap: 20px; /* Khoảng cách giữa các phần tử */
+    background-color: #f9f9f9; /* Màu nền cho detail_card */
+    border-radius: 10px; /* Bo góc */
+    overflow: hidden; /* Ẩn phần nội dung vượt ra ngoài */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng đổ */
+}
+
+.detail_image img {
+    width: 100%; /* Để ảnh điền vào toàn bộ khung của nó */
+    display: block; /* Loại bỏ khoảng trống dưới ảnh */
+}
+
+.detail_content {
+    padding: 20px;
+}
+
+.detail_content h1 {
+    font-size: 3rem;
+    margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+}
+
+.detail_content .rate {
+    margin: 10px 0;
+}
+
+.detail_content .author,
+.detail_content .year,
+.detail_content .category{
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+.detail_content .description{
+    font-size: 2rem;
+}
+
+.detail_content .description p {
+    margin-bottom: 10px; /* Khoảng cách giữa các đoạn văn trong mô tả */
+    font-size: 1.5rem;
+}
+
+.detail_content .options {
+    margin-top: 20px;
+}
+
+.detail_content .options a {
+    display: inline-block;
+    margin-right: 10px; /* Khoảng cách giữa các tùy chọn */
+    padding: 8px 16px; /* Kích thước nút */
+    background-color: var(--deepteal); /* Màu nền của nút */
+    color: #fff; /* Màu chữ trắng */
+    text-decoration: none;
+    border-radius: 4px; /* Bo góc nút */
+    font-size: 2rem;
+}
+
+.detail_content .options form button {
+    margin-right: 10px; /* Khoảng cách giữa các tùy chọn */
+    padding: 0; 
+    background-color: var(--deepteal); /* Màu nền của nút */
+    color: #fff; /* Màu chữ trắng */
+    text-decoration: none;
+    border-radius: 4px; /* Bo góc nút */
+    font-size: 2rem;
+    border: none;
+}
+
+
+.detail_content .options a, form button:hover {
+    cursor: pointer;
+}
+
+.review {
+    margin-top: 30px; /* Khoảng cách từ nội dung chính */
+    border-top: 1px solid #ddd; /* Đường kẻ ngang trên phần đánh giá */
+    padding-top: 20px; /* Khoảng cách phía trên phần đánh giá */
+}
+
+.review h3 {
+    font-size: 2rem;
+    margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+}
+
+.review form {
+    margin-top: 20px; /* Khoảng cách giữa tiêu đề và biểu mẫu */
+}
+
+.review label {
+    font-size: 1.5rem;
+}
+
+.review select,
+.review textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1.5rem;
+}
+
+.review button {
+    padding: 8px 16px;
+    background-color: var(--deepteal);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 1.5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.review button:hover {
+    background-color: var(--lightteal);
+}
+
+.review-item {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+.review-item p.rating {
+    font-weight: bold;
+}
+
+.review-item p.comment {
+    margin-top: 10px;
+}
+
+.review-item p.username {
+    margin-top: 10px;
+    font-style: italic;
+}
+
+
+
+/*Footer*/
+
+footer{
+    margin-top: 10rem;
+    width: 100%;
+    background: #eaeaea;
+}
+
+footer .footer_main{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer .footer_main .tag{
+    margin: 10px 0;
+}
+
+footer .footer_main .tag img{
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+footer .footer_main .tag p{
+    width: 250px;
+    line-height: 22px;
+    text-align: justify;
+}
+
+footer .footer_main .tag h1{
+    font-size: 25px;
+    margin: 25px 0;
+    color: #000;
+}
+
+footer .footer_main .tag a{
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin: 10px 0;
+}
+
+footer .footer_main .tag i{
+    margin-right: 10px;
+}
+
+footer .footer_main .tag .social_link i{
+    margin: 0 5px;
+}
+
+footer .footer_main .tag .search_bar{
+    width: 230px;
+    height: 30px;
+    background: rgba(202,202,202);
+    border-radius: 25px;
+}
+
+footer .footer_main .tag .search_bar input{
+    width: 200px;
+    padding: 2px 0;
+    position: relative;
+    top: 17%;
+    left: 6%;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    background: none;
+}
+
+footer .footer_main .tag .search_bar button{
+    padding: 7px 15px;
+    background: #089da1;
+    border: none;
+    margin-top: 15px;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+}
+
+footer .end{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    color: #000;
+}
+
+footer .end span{
+    color: #089da1;
+    margin-left: 10px;
+}
+
+
+

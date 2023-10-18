@@ -1,0 +1,621 @@
+:root{
+    --tealblue:#089da1;
+    --deepteal:#047a85;
+    --black:#444;
+    --light-color:#666;
+    --yellow:#ffc839;
+    --border:0.1rem solid rgba(0,0,0,0.1);
+    --border-hover:0.1rem solid var(--black);
+    --box-shadow:0 0.5rem 1rem rgba(0,0,0,0.1);
+}
+
+*{
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    transition: all .2s linear;
+    transition: width none;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 5rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+    width: 1rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+    background: var(--black);
+}
+
+.header .header-1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 9%;
+    background: #fff;
+}
+
+.header .header-1 .logo{
+    display: flex;
+    align-items: center;
+}
+
+.header .header-1 a img{
+    width: 4rem;
+    cursor: pointer;
+}
+
+.header .header-1 a .logo-text{
+    margin-top: 1rem;
+    font-size: 2.5rem;
+    color: var(--tealblue);
+}
+
+.header .header-1 .form-box{
+    width: 50rem;
+    height: 5rem;
+    border: 0.1rem solid var(--tealblue);
+    background-color: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+.header .header-1 .form-box input{
+
+    font-size: 1.6rem;
+    padding: 0 1.2rem;
+    height: 100%;
+    width: 100%;
+    text-transform: none;
+    color: var(--black);
+    padding-right: 3.5rem;
+}
+
+.header .header-1 .form-box button {
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+.header .header-1 .form-box .search-button{
+    font-size: 2.5rem;
+    padding-left: 1.5rem;
+    color: var(--black);
+    cursor: pointer;
+    position: absolute;
+    right: 0.8rem;
+}
+
+.header .header-1 .form-box .search-button:hover{
+    color: var(--tealblue);
+}
+
+
+.header .header-1 .button {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.header .header-1 .button a i{
+    font-size: 3rem;
+    margin-right: 1.5rem;
+    color: var(--tealblue);
+    cursor: pointer;
+}
+
+
+.header .header-1 .button .btn-login{
+    
+    border: var(--border);
+    background-color: var(--tealblue);
+    padding: 1rem 2.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: white;
+    border-radius: 2.5rem;
+    cursor: pointer;
+}
+.header .header-1 .button .btn-register{
+    width: 12rem;
+    border: var(--border);
+    background-color: var(--tealblue);
+    padding: 1rem 2.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: white;
+    border-radius: 2.5rem;
+    margin-right: 1.5rem;
+    justify-content: center;
+    transition: .4s;
+    cursor: pointer;
+}
+
+.header .header-1 .button .btn-logout{
+    
+    border: var(--border);
+    background-color: var(--tealblue);
+    padding: 1rem 2.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: white;
+    border-radius: 2.5rem;
+    cursor: pointer;
+}
+
+
+.header .header-1 .button button:hover{
+    background: var(--yellow);
+    color:var(--tealblue);
+    transform: scale(1.2);
+}
+
+.header .header-2{
+    background-color: var(--tealblue);
+}
+
+.header .header-2 .navbarr{
+    text-align: center;
+}
+
+.header .header-2 .navbarr a{
+    color: #fff;
+    display: inline-block;
+    padding: 1.2rem;
+    font-size: 1.7rem;
+}
+
+.header .header-2 .navbarr a:hover{
+    background: var(--deepteal);
+    color: var(--yellow);
+}
+
+.header .header-2.active{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+/* Đăng nhập */
+.login-form{
+    display: flex;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 40rem;
+    height: 47rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--light-color);
+    border-radius: 2rem;
+    backdrop-filter: blur(2rem);
+    transition: all 0.3s; 
+    z-index: 1000;
+    box-shadow: 0 0 3rem rgba(0,0,0,.5)
+}
+
+.login-form form h2{
+    text-align: center;
+    color: var(--tealblue);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+.login-form form .input-box label{
+    font-size: 1.7rem;
+    color: var(--tealblue);
+    display: block;
+}
+.login-form form .input-box input{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem 1.2rem;
+    font-size: 1.8rem;
+    border: var(--border);
+    border-radius: 0.5rem;
+    width: 34rem;
+}
+.login-form form .input-box input::placeholder {
+    font-size: 1.3rem; 
+}
+.login-form form .input-box .icon1{
+    position: absolute;
+    right: 4rem;
+    font-size: 2rem;
+    top: 7rem;
+    color: var(--deepteal);
+}
+.login-form form .input-box .icon2{
+    position: absolute;
+    right: 4rem;
+    font-size: 2rem;
+    bottom: 20.5rem;
+    color: var(--deepteal);
+}
+.login-form form .remember-forgot{
+    display: flex;
+    color: var(--tealblue); 
+    align-items: center;
+    gap: 0.5rem;   
+}
+.login-form form .remember-forgot label   {
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 10rem;
+}
+.login-form .remember-forgot a{
+    font-size: 1.5rem;
+    color: var(--yellow);
+    text-decoration: underline;
+   
+}
+.login-form form button{
+    margin-top: 2rem;
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: var(--tealblue);
+    border: var(--border);
+    font-size: 1.7rem;
+    padding: 0.7rem 3rem;
+    cursor: pointer;
+}
+
+.login-form form button:hover{
+    background: var(--deepteal);
+    color: var(--yellow);
+}
+
+.login-form form .login-register p{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    color: var(--tealblue);
+    text-align: center;
+}
+
+.login-form form .login-register p a{
+    font-size: 1.5rem;
+    color: var(--yellow);
+    text-decoration: underline;
+    cursor: pointer;
+    
+}
+.login-form form #btn-close-login{
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    font-size: 4rem;
+    color: var(--tealblue);
+    cursor: pointer;
+    
+}
+/* Đăng ký */
+.register-form{
+    display: flex;
+    background: transparent;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 40rem;
+    height: 50rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid var(--light-color);
+    border-radius: 2rem;
+    backdrop-filter: blur(2rem);
+    transition: all 0.3s; 
+    z-index: 1000;
+    box-shadow: 0 0 3rem rgba(0,0,0,.5)
+}
+
+.register-form form h2{
+    text-align: center;
+    color: var(--tealblue);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+.register-form form .input-box label{
+    font-size: 1.7rem;
+    color: var(--tealblue);
+    display: block;
+}
+.register-form form .input-box input{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem 1.2rem;
+    font-size: 1.8rem;
+    border: var(--border);
+    border-radius: 0.5rem;
+    width: 34rem;
+}
+.register-form form .input-box input::placeholder {
+    font-size: 1.3rem; 
+}
+.register-form form .input-box .icon1{
+    position: absolute;
+    right: 4rem;
+    font-size: 2rem;
+    top: 15.8rem;
+    color: var(--deepteal);
+}
+.register-form form .input-box .icon2{
+    position: absolute;
+    right: 4rem;
+    font-size: 2rem;
+    bottom: 16.3rem;
+    color: var(--deepteal);
+}
+.register-form form .input-box .icon3{
+    position: absolute;
+    right: 4rem;
+    font-size: 2rem;
+    top: 7.3rem;;
+    color: var(--deepteal);
+}
+.login-form form .remember-forgot label   {
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 10rem;
+}
+
+.register-form form button{
+    margin-top: 2rem;
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: var(--tealblue);
+    border: var(--border);
+    font-size: 1.7rem;
+    padding: 0.7rem 3rem;
+    cursor: pointer;
+}
+
+.register-form form button:hover{
+    background: var(--deepteal);
+    color: var(--yellow);
+}
+.register-form form #btn-close-register{
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    font-size: 4rem;
+    color: var(--tealblue);
+    cursor: pointer;
+    
+}
+section{
+    padding: 5rem 9%;
+}
+
+.home{
+    background-image: url(../image/banner-bg.jpg);
+    background-position: center;
+    background-size: cover;
+}
+.home .row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+.home .row .content{
+    flex: 1 1 42rem;
+}
+
+.home .row .content h1{
+    color: var(--black);
+    font-size: 4.5rem;
+}
+
+.home .row .content p{
+    color: var(--light-color);
+    font-size: 1.4rem;
+    line-height: 2;
+    padding: 2rem 0;
+}
+
+
+.home .row .content a{
+    border: var(--border);
+    background-color: var(--tealblue);
+    padding: 1rem 2.5rem;
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: white;
+    border-radius: 2.5rem;
+    cursor: pointer;
+}
+
+.home .row .books-list{
+    flex: 1 1 42rem;
+    margin-top: 2rem;
+    text-align: center;
+
+}
+
+.home .row .books-list a img{
+    height: 25rem;
+}
+
+.home .row .books-list a:hover img{
+    transform: scale(0.9);
+}
+
+.home .row .books-list .stand{
+    width: 100%;
+    margin-top: -2rem;
+}
+
+
+/*services*/
+
+.services{
+    width: 100%;
+    height: auto;
+    margin: 2rem 0;
+}
+
+.services .services_box{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.services .services_box .services_card{
+    flex: 1;
+    margin: 0 1rem;
+    text-align: center;
+    width: 31rem;
+    height: auto;
+    box-shadow: 0 0 8px #089da1;
+    padding: 1.5rem 1rem;
+}
+
+.services .services_box .services_card i{
+    color: #089da1;
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+}
+
+.services .services_box .services_card h3{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.services .services_box .services_card p{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+/*Footer*/
+
+footer{
+    margin-top: 10rem;
+    width: 100%;
+    background: #eaeaea;
+}
+
+footer .footer_main{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer .footer_main .tag{
+    margin: 10px 0;
+}
+
+footer .footer_main .tag img{
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+footer .footer_main .tag p{
+    width: 250px;
+    line-height: 22px;
+    text-align: justify;
+}
+
+footer .footer_main .tag h1{
+    font-size: 25px;
+    margin: 25px 0;
+    color: #000;
+}
+
+footer .footer_main .tag a{
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin: 10px 0;
+}
+
+footer .footer_main .tag i{
+    margin-right: 10px;
+}
+
+footer .footer_main .tag .social_link i{
+    margin: 0 5px;
+}
+
+footer .footer_main .tag .search_bar{
+    width: 230px;
+    height: 30px;
+    background: rgba(202,202,202);
+    border-radius: 25px;
+}
+
+footer .footer_main .tag .search_bar input{
+    width: 200px;
+    padding: 2px 0;
+    position: relative;
+    top: 17%;
+    left: 6%;
+    border: none;
+    outline: none;
+    font-size: 13px;
+    background: none;
+}
+
+footer .footer_main .tag .search_bar button{
+    padding: 7px 15px;
+    background: #089da1;
+    border: none;
+    margin-top: 15px;
+    border-radius: 25px;
+    color: #fff;
+    cursor: pointer;
+}
+
+footer .end{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    color: #000;
+}
+
+footer .end span{
+    color: #089da1;
+    margin-left: 10px;
+}
+
+.allbooktitle{
+    margin-top: 3rem;
+    text-align: center;
+    font-weight: 900;
+    font-size: 4rem;
+    justify-content: center;
+}
+
+.favorites{
+    margin-top: 3rem;
+    text-align: center;
+    font-weight: 900;
+    font-size: 4rem;
+    justify-content: center;
+} 
+
+.custom-col {
+    flex: 0 0 9%;
+    max-width: 9%;
+}
