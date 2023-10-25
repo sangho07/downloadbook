@@ -12,6 +12,7 @@ include "db_conn.php";
 include "php/func-book.php";
 $books = get_all_books($conn);
 
+
 # author helper function
 include "php/func-author.php";
 $authors = get_all_author($conn);
@@ -20,13 +21,13 @@ $authors = get_all_author($conn);
 include "php/func-category.php";
 $categories = get_all_categories($conn);
 
-include "php/searchauca.php";
+include "php/search.php";
 
 
 $user_id = $_SESSION['user_id'];
 
 // Truy vấn danh sách sách yêu thích của người dùng
-$sql_get_favorites = "SELECT b.title, b.description, b.category_id, b.cover, b.file, a.name AS author_name
+$sql_get_favorites = "SELECT b.id, b.title, b.description, b.category_id, b.cover, b.file, a.name AS author_name
                      FROM favorites AS f
                      INNER JOIN books AS b ON f.book_id = b.id
                      INNER JOIN authors AS a ON b.author_id = a.id
@@ -107,7 +108,10 @@ $favorite_books = $stmt_get_favorites->fetchAll(PDO::FETCH_ASSOC);
                     </b></i>
                 </p>
                 <div class="d-grid gap-2">
-                    <a href="uploads/files/<?=$book['file']?>" class="btn btn-success">Open</a>
+                    <?php
+                        $book_id = $book['id'];
+                    ?>
+                    <a href="detailuser.php?id=<?= $book['id'] ?>" class="btn btn-success">Xem chi tiết</a>
                     <a href="uploads/files/<?=$book['file']?>" class="btn btn-primary" download="<?=$book['title']?>">Download</a>
                 </div>
             </div>

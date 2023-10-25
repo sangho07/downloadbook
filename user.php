@@ -16,7 +16,10 @@ include "db_conn.php";
 
 # Book helper function
 include "php/func-book.php";
-$books = get_all_books($conn);
+$booksPerPage = 5; // Change this to the number of books per page you want to display
+$currentPage = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($currentPage - 1) * $booksPerPage;
+$books = get_books_paginated($conn, $offset, $booksPerPage);
 
 # author helper function
 include "php/func-author.php";
@@ -26,7 +29,7 @@ $authors = get_all_author($conn);
 include "php/func-category.php";
 $categories = get_all_categories($conn);
 
-include "php/searchauca.php";
+include "php/search.php";
 
 
  ?>
@@ -54,7 +57,7 @@ include "php/searchauca.php";
                 <span class="logo-text">SÁCH HAY</span>
             </a>
         
-            <form action="search.php" class="form-box">
+            <form action="searchuser.php" class="form-box">
                 <input type="search" id="search-box" name="key" placeholder="Tìm kiếm sách...">
                 <button type="submit" class="fas fa-search search-button" id="search-box" ></button>
             </form>
@@ -217,6 +220,27 @@ include "php/searchauca.php";
         </div>
     </div>
 </div>
+
+<div class="pagination">
+        <?php
+        $totalBooks = count_all_books($conn); // Modify this function to get the total number of books
+        $totalPages = ceil($totalBooks / $booksPerPage);
+
+        if ($currentPage > 1) {
+            echo "<a href='user.php?page=" . ($currentPage - 1) . "' class='page-link'>Previous</a>";
+        }
+
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $activeClass = ($i == $currentPage) ? 'active' : '';
+            echo "<a href='user.php?page=$i' class='page-link $activeClass'>$i</a>";
+        }
+
+        if ($currentPage < $totalPages) {
+            echo "<a href='user.php?page=" . ($currentPage + 1) . "' class='page-link'>Next</a>";
+        }
+        ?>
+    </div>
+
 
 <footer>
         <div class="footer_main">

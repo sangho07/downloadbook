@@ -7,7 +7,10 @@ include "db_conn.php";
 
 # Book helper function
 include "php/func-book.php";
-$books = get_all_books($conn);
+$booksPerPage = 5; // Change this to the number of books per page you want to display
+$currentPage = isset($_GET['page']) ? intval($_GET['page']) : 1;
+$offset = ($currentPage - 1) * $booksPerPage;
+$books = get_books_paginated($conn, $offset, $booksPerPage);
 
 # author helper function
 include "php/func-author.php";
@@ -17,7 +20,7 @@ $authors = get_all_author($conn);
 include "php/func-category.php";
 $categories = get_all_categories($conn);
 
-include "php/searchauca.php";
+include "php/search.php";
  ?>
 
 <!DOCTYPE html>
@@ -185,13 +188,12 @@ include "php/searchauca.php";
     <h1 >Toàn bộ sách</h1>  
 </div>
 
-
 </div>
     <div class="d-flex pt-3">
     <div class="pdf-list d-flex flex-wrap">
         <?php foreach ($books as $book) { ?>
-        <div class="card m-1" style="width: 30rem;">
-            <img src="uploads/cover/<?=$book['cover']?>" class="card-img-top" alt="Book Cover">
+        <div class="card m-1" style="width: 24rem;">
+            <img src="uploads/cover/<?=$book['cover']?>" class="card-img-top" alt="Book Cover" style="height:30rem;">
             <div class="card-body">
                 <h5 class="card-title"><?=$book['title']?></h5>
                 <p class="card-text">
@@ -204,8 +206,7 @@ include "php/searchauca.php";
                         }?>
                     </b></i>
                     <br>
-                    <?=$book['description']?>
-                    <br>
+                    
                     <i><b>Category:
                         <?php foreach($categories as $category){ 
                             if ($category['id'] == $book['category_id']) {
@@ -216,7 +217,7 @@ include "php/searchauca.php";
                     </b></i>
                 </p>
                 <div class="d-grid gap-2">
-                    <a href="detail.php?id=<?=$book['id']?>" class="btn btn-success">Xem chi tiết</a>
+                    <a href="detailuser.php?id=<?=$book['id']?>" class="btn btn-success">Xem chi tiết</a>
                     <a href="uploads/files/<?=$book['file']?>" class="btn btn-primary" download="<?=$book['title']?>">Download</a>
                 </div>
             </div>
@@ -224,34 +225,95 @@ include "php/searchauca.php";
         <?php } ?>
     </div>
 
-    <div class="category">
+    <div class="category custom-col">
         <!-- List of categories -->
-        <div class="list-group">
+        <div class="list-group ">
             <?php if ($categories == 0) {
                 // do nothing
             } else { ?>
             <a href="#" class="list-group-item list-group-item-action active">Category</a>
             <?php foreach ($categories as $category) { ?>
-                <a href="category.php?id=<?=$category['id']?>" class="list-group-item list-group-item-action">
+                <a href="categoryuser.php?id=<?=$category['id']?>" class="list-group-item list-group-item-action">
                     <?=$category['name']?>
                 </a>
             <?php } } ?>
         </div>
 
         <!-- List of authors -->
-        <div class="list-group mt-5">
+        <div class="list-group mt-5 ">
             <?php if ($authors == 0) {
                 // do nothing
             } else { ?>
             <a href="#" class="list-group-item list-group-item-action active">Author</a>
             <?php foreach ($authors as $author) { ?>
-                <a href="author.php?id=<?=$author['id']?>" class="list-group-item list-group-item-action">
+                <a href="authoruser.php?id=<?=$author['id']?>" class="list-group-item list-group-item-action">
                     <?=$author['name']?>
                 </a>
             <?php } } ?>
         </div>
     </div>
 </div>
+
+<div class="pagination">
+        <?php
+        $totalBooks = count_all_books($conn); // Modify this function to get the total number of books
+        $totalPages = ceil($totalBooks / $booksPerPage);
+
+        if ($currentPage > 1) {
+            echo "<a href='index.php?page=" . ($currentPage - 1) . "' class='page-link'>Previous</a>";
+        }
+
+        for ($i = 1; $i <= $totalPages; $i++) {
+            $activeClass = ($i == $currentPage) ? 'active' : '';
+            echo "<a href='index.php?page=$i' class='page-link $activeClass'>$i</a>";
+        }
+
+        if ($currentPage < $totalPages) {
+            echo "<a href='index.php?page=" . ($currentPage + 1) . "' class='page-link'>Next</a>";
+        }
+        ?>
+    </div>
+
+
+<footer>
+        <div class="footer_main">
+
+            <div class="tag">
+                <img src="image/logo.png">
+
+            </div>
+
+            <div class="tag">
+                <h1>Thông tin</h1>
+                <a href="#"><i class="fa-solid fa-phone"></i>+84 976 712 464</a>
+                <a href="#"><i class="fa-solid fa-phone"></i>+84 978 327 293</a>
+                <a href="#"><i class="fa-solid fa-envelope"></i>bookstore123@gmail.com</a>
+                
+            </div>
+
+            <div class="tag">
+                <h1>Theo dõi </h1>
+                <div class="social_link">
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </div>
+                
+            </div>
+
+            <div class="tag">
+                <h1>Nhận xét</h1>
+                <div class="search_bar">
+                    <input type="text" placeholder="Đánh giá website">
+                    <button type="submit">Đánh giá</button>
+                </div>                
+            </div>            
+            
+        </div>
+
+        <p class="end">Design By<span><i class="fa-solid fa-face-grin"></i> Minh Sang</span></p>
+    </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>

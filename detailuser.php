@@ -16,7 +16,7 @@ $authors = get_all_author($conn);
 include "php/func-category.php";
 $categories = get_all_categories($conn);
 
-include "php/searchauca.php";
+include "php/search.php";
 
 if (isset($_SESSION['user_id'])) {
     // Tiếp tục xử lý vì người dùng đã đăng nhập.
@@ -43,6 +43,8 @@ if (isset($_GET['id'])) {
     $review_query->execute([$book_id]);
     $reviews = $review_query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +91,19 @@ if (isset($_GET['id'])) {
         </div>
     </div>
     
+    <?php
+        $totalRating = 0;
+        $averageRating = 0;
+    foreach ($reviews as $review) {
+        $totalRating += $review['rating'];
+    }
+
+    if (count($reviews) > 0) {
+        $averageRating = $totalRating / count($reviews);
+    }
+    ?>
+
+
     <div class="detail">
     <h2>Chi tiết</h2>
         <div class="detail_card">
@@ -99,12 +114,18 @@ if (isset($_GET['id'])) {
                 <div class="detail_tags">
                     <h1><?=$book['title']?></h1>
                     <div class="rate">
-                        <i class="filled fas fa-star"></i>
-                        <i class="filled fas fa-star"></i>
-                        <i class="filled fas fa-star"></i>
-                        <i class="filled fas fa-star"></i>
-                        <i class="filled fas fa-star"></i>
+                        <?php
+                        $averageRating = round($averageRating); // Làm tròn trung bình rating
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($i <= $averageRating) {
+                                echo '<i class="filled fas fa-star"></i>';
+                            } else {
+                            echo '<i class="fas fa-star"></i>';
+                        }
+                    }
+                    ?>
                     </div>
+
                     <div class="author">Tên tác giả:<span>
                     <?php foreach($authors as $author){ 
                             if ($author['id'] == $book['author_id']) {
@@ -141,7 +162,7 @@ if (isset($_GET['id'])) {
                 </div>
 
                     <div class="review">
-                        <h3>Đánh giá sản phẩm</h3>                              
+                        <h3>Đánh giá</h3>                              
                         <form action="./php/submit_review.php" method="POST">
                             <input type="hidden" name="book_id" value="<?=$book_id?>">
                             <label for="rating">Điểm đánh giá:</label>

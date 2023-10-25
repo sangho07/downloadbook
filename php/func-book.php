@@ -78,3 +78,29 @@ function get_books_by_author($con, $id){
 
    return $books;
 }
+
+function get_books_paginated($conn, $offset, $limit) {
+   $sql = "SELECT * FROM books LIMIT :offset, :limit";
+   $stmt = $conn->prepare($sql);
+   $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+   $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+   $stmt->execute();
+
+   $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+   return $books;
+}
+
+function count_all_books($conn) {
+   $sql = "SELECT COUNT(*) as total FROM books";
+   $stmt = $conn->prepare($sql);
+   $stmt->execute();
+
+   $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+   
+   if (count($result) > 0) {
+       return $result[0]['total'];
+   } else {
+       return 0;
+   }
+}

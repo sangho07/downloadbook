@@ -35,7 +35,7 @@ include "php/func-category.php";
 $categories = get_all_categories($conn);
 $current_category = get_category($conn, $id);
 
-include "php/searchauca.php";
+include "php/search.php";
 
  ?>
 <!DOCTYPE html>
@@ -61,8 +61,8 @@ include "php/searchauca.php";
             </a>
         
             <form action="searchuser.php" class="form-box">
-                <input type="search" name="key" placeholder="Tìm kiếm sách..." aria-describedby="basic-addon2">
-                <label for="search-box" class="fas fa-search" id="basic-addon2"></label>
+                <input type="search" id="search-box" name="key" placeholder="Tìm kiếm sách...">
+                <button type="submit" class="fas fa-search search-button" id="search-box" ></button>
             </form>
             
             <div class="button">
@@ -128,7 +128,7 @@ include "php/searchauca.php";
                     </b></i>
                 </p>
                 <div class="d-grid gap-2">
-                    <a href="uploads/files/<?=$book['file']?>" class="btn btn-success">Open</a>
+                    <a href="detailuser.php?id=<?=$book['id']?>" class="btn btn-success">Xem chi tiết</a>
                     <a href="uploads/files/<?=$book['file']?>" class="btn btn-primary" download="<?=$book['title']?>">Download</a>
                 </div>
             </div>
@@ -136,7 +136,7 @@ include "php/searchauca.php";
         <?php } ?>
     </div>
 
-    <div class="category">
+    <div class="category position-fixed "style="right: 0; top: 5;">
         <!-- List of categories -->
         <div class="list-group">
             <?php if ($categories == 0) {

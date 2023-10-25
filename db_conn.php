@@ -1,5 +1,4 @@
 <?php 
-
 # server name
 $sName = "localhost";
 # user name

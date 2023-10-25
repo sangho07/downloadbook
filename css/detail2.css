@@ -86,7 +86,13 @@ html::-webkit-scrollbar-thumb{
     padding-right: 3.5rem;
 }
 
-.header .header-1 .form-box label{
+.header .header-1 .form-box button {
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+.header .header-1 .form-box .search-button{
     font-size: 2.5rem;
     padding-left: 1.5rem;
     color: var(--black);
@@ -95,7 +101,7 @@ html::-webkit-scrollbar-thumb{
     right: 0.8rem;
 }
 
-.header .header-1 .form-box label:hover{
+.header .header-1 .form-box .search-button:hover{
     color: var(--tealblue);
 }
 
@@ -428,5 +434,17 @@ footer .end span{
     margin-left: 10px;
 }
 
+.fa-star {
+    color: #3c4043; 
+}
 
 
+
+.fa-star.filled {
+    color: #fbbc04; 
+}
+
+
+.fa-star.half-filled {
+    color: #fbbc04; 
+}

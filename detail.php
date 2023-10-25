@@ -16,7 +16,7 @@ $authors = get_all_author($conn);
 include "php/func-category.php";
 $categories = get_all_categories($conn);
 
-include "php/searchauca.php";
+include "php/search.php";
 
 # Get the book ID from the URL parameter
 if (isset($_GET['id'])) {

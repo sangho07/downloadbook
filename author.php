@@ -27,7 +27,7 @@ $current_author = get_author($conn, $id);
 include "php/func-category.php";
 $categories = get_all_categories($conn);
 
-include "php/searchauca.php";
+include "php/search.php";
 
  ?>
 
@@ -123,7 +123,7 @@ include "php/searchauca.php";
                     </b></i>
                 </p>
                 <div class="d-grid gap-2">
-                    <a href="uploads/files/<?=$book['file']?>" class="btn btn-success">Open</a>
+                    <a href="detail.php?id=<?=$book['id']?>" class="btn btn-success">Xem chi tiết</a>
                     <a href="uploads/files/<?=$book['file']?>" class="btn btn-primary" download="<?=$book['title']?>">Download</a>
                 </div>
             </div>
@@ -131,7 +131,7 @@ include "php/searchauca.php";
         <?php } ?>
     </div>
 
-    <div class="category">
+    <div class="category position-fixed "style="right: 0; top: 5;">
         <!-- List of categories -->
         <div class="list-group">
             <?php if ($categories == 0) {
